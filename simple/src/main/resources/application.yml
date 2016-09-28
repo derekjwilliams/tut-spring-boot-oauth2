@@ -1,12 +1,13 @@
+server.port: 9000
 security:
   oauth2:
     client:
-      clientId: 233668646673605
-      clientSecret: 33b17e044ee6a4fa383f46ec6e28ea1d
-      accessTokenUri: https://graph.facebook.com/oauth/access_token
-      userAuthorizationUri: https://www.facebook.com/dialog/oauth
-      tokenName: oauth_token
-      authenticationScheme: query
-      clientAuthenticationScheme: form
+      clientId: 428873130384-8aq517qkkuce4e6k1s497cubtsb22s78.apps.googleusercontent.com
+      clientSecret: FqdVIzoPfjqW6AVZx3Wl036J
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+      clientAuthenticationScheme: query
+      scope: profile email
     resource:
-      userInfoUri: https://graph.facebook.com/me
+      userInfoUri: https://www.googleapis.com/plus/v1/people/me
+      preferTokenInfo: false
