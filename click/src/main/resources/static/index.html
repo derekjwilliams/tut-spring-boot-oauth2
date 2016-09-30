@@ -13,10 +13,11 @@
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
+
 <body ng-app="app" ng-controller="home as home">
 	<h1>Login</h1>
 	<div class="container" ng-show="!home.authenticated">
-		With Facebook: <a href="/login">click here</a>
+		With Google: <a href="/login">click here</a>
 	</div>
 	<div class="container" ng-show="home.authenticated">
 		Logged in as: <span ng-bind="home.user"></span>
@@ -26,7 +27,9 @@
 		angular.module("app", []).controller("home", function($http) {
 			var self = this;
 			$http.get("/user").success(function(data) {
-				self.user = data.userAuthentication.details.name;
+			    console.log(JSON.stringify(data.userAuthentication.details.name))
+				self.userAuthentication = JSON.stringify(data.userAuthentication);
+				self.user = data.userAuthentication.details.displayName;
 				self.authenticated = true;
 			}).error(function() {
 				self.user = "N/A";

@@ -80,24 +80,24 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
 	}
 
 	private Filter ssoFilter() {
-		OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter(
-				"/login/facebook");
-		OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(facebook(), oauth2ClientContext);
-		facebookFilter.setRestTemplate(facebookTemplate);
-		facebookFilter.setTokenServices(
-				new UserInfoTokenServices(facebookResource().getUserInfoUri(), facebook().getClientId()));
-		return facebookFilter;
+		OAuth2ClientAuthenticationProcessingFilter googleFilter = new OAuth2ClientAuthenticationProcessingFilter(
+				"/login/google");
+		OAuth2RestTemplate googleTemplate = new OAuth2RestTemplate(google(), oauth2ClientContext);
+		googleFilter.setRestTemplate(googleTemplate);
+		googleFilter.setTokenServices(
+				new UserInfoTokenServices(googleResource().getUserInfoUri(), google().getClientId()));
+		return googleFilter;
 	}
 
 	@Bean
-	@ConfigurationProperties("facebook.client")
-	public AuthorizationCodeResourceDetails facebook() {
+	@ConfigurationProperties("google.client")
+	public AuthorizationCodeResourceDetails google() {
 		return new AuthorizationCodeResourceDetails();
 	}
 
 	@Bean
-	@ConfigurationProperties("facebook.resource")
-	public ResourceServerProperties facebookResource() {
+	@ConfigurationProperties("google.resource")
+	public ResourceServerProperties googleResource() {
 		return new ResourceServerProperties();
 	}
 

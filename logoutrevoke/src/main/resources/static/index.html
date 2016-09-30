@@ -6,19 +6,31 @@
 <title>Demo</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width" />
-<base href="/" />
+<meta name="google-signin-client_id" content="428873130384-8aq517qkkuce4e6k1s497cubtsb22s78.apps.googleusercontent.com"><base href="/" />
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body ng-app="app" ng-controller="home as home">
+<a href="#" onclick="revoke();">Revoke</a>
+	<script>
+	  function revoke() {
+	    var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.disconnect();
+
+	    // auth2.signOut().then(function () {
+	    //   console.log('User signed out.');
+	    // });
+	  }
+
+	</script>
+
 	<h1>Login</h1>
 	<div class="container" ng-show="!home.authenticated">
-		<div>
-		With Google: <a href="/login/google">click here</a>
-		</div>
+		With Google: <a href="/login">click here</a>
 	</div>
 	<div class="container" ng-show="home.authenticated">
 		Logged in as: <span ng-bind="home.user"></span>
@@ -52,6 +64,13 @@
 						});
 					};
 				});
+	</script>
+	<script>
+	$(function() {
+        gapi.load('auth2', function() {
+          gapi.auth2.init();
+        });
+	});
 	</script>
 </body>
 </html>
